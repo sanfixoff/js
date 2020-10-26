@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+
+
+<div>
+	<button onclick="task1 ()">Задание 1</button>
+	<button onclick="task4 ()">Задание 2</button>
+	<button onclick="game ()">Задание 5</button>
+</div>
+
+
+
+    <script>
+    	function task1 () {
+    		let a = 0;
+    		while ( a < 100) {
+    			a++;
+    			console.log(a);
+    		}
+    	}
+
+    	function task4 () {
+    		for (let i = 0; i < 10; i++) {}
+    	}
+
+
+    	function game() {
+            let rounds = 10;
+            let play = true;
+            let goal = getNumber();
+            console.log(goal);
+
+            while(play) {
+                if(rounds) {
+                    let user = [...prompt('Enter number...')];
+                    play = checkUser(user, goal);
+                    console.log(play ? `${--rounds} rounds left...` : `User wins! GOAL: ${goal}`)
+                } else {
+                    console.log('User lost');
+                    play = false;
+                }
+            }
+        }
+
+        function checkUser(u, g) {
+            let bulls = 0;
+            let cows = 0;
+
+            for (let i = 0; i < 4; i++) {
+                if (+u[i] === g[i]) {
+                    bulls++;
+                } else if (g.includes(+u[i])) {
+                    cows++;
+                }
+            }
+
+            analise(bulls, cows, u);
+
+            return bulls == 4 ? false : true
+        }
+
+        function getNumber() {
+            let arr = [];
+            
+            while(arr.length < 4) {
+                let rnd = getRnd();
+                if (!arr.includes(rnd)) {
+                // if (arr.indexOf(rnd) < 0) {
+                    arr.push(rnd);
+                }
+            }
+            return arr
+        }
+
+        function getRnd() {
+            return Math.floor(Math.random() * 10)
+        }
+
+        function analise(b, c, us) {
+            console.log(`
+                User variant: ${us} \n
+                Bulls: ${b}; Cows: ${c}
+            `);
+        }
+    </script>
+</body>
+</html>
