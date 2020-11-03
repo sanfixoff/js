@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+
+
+<div>
+	<button onclick=" randomFunc() ">Задание 1</button><br>
+  	<button onclick=" addCart(0) ">Добавить Jeans</button><br>
+  	<button onclick=" addCart(1) ">Добавить T-shirt</button><br>
+  	<button onclick=" addCart(2) ">Добавить Socks</button><br>
+  	<button onclick=" addCart(3) ">Добавить Hat</button><br>
+</div>
+
+
+
+    <script>
+      function addCart(j) {
+        let productName = [ 'Jeans', 'T-shirt', 'Socks', 'Hat'];
+        let productPrice = [30, 24, 100, 51];
+  
+        let products = [];
+    
+        for (let i = 0; i < productName.length; i++) {
+          products.push({
+            Name: productName[i],
+            Price: productPrice[i],
+          })
+          //sayInfo(products, j);
+        }
+      	sayInfo(products, j);
+      	msg(products, j);
+
+      }
+      function sayInfo(products, i) {
+        console.log(products[i].Name + ' за ' + products[i].Price + '$' + ' добавлен в корзину ');
+      }
+
+      function msg(products, i) {
+      	let msg = document.createElement('div');
+      	msg.className = "alert";
+		msg.innerHTML = products[i].Name + ' за ' + products[i].Price + '$' + ' добавлен в корзину ';
+		document.body.append(msg);
+
+		setTimeout(function() {
+			document.body.removeChild(msg);
+		}, 1000);
+      }
+
+
+	function randomFunc() {
+		let num = 999;
+    	let userNum = {
+        number: prompt('Введите число от 0 до 999'),
+        units: 0,
+        tens: 0,
+        hundreds: 0,
+    	};
+    	if (userNum.number <= 9){
+    	    userNum.units = userNum.number;
+    	} else if (userNum.number <= 999){
+    	    userNum.units = Math.floor(userNum.number % 10);
+    	    userNum.tens = Math.floor(userNum.number / 10 % 10);
+    	    userNum.hundreds = Math.floor(userNum.number / 100 % 10);
+    	} else {
+    	    userNum.number = 0;
+    	    console.log('Вы ввели число за диапазоном 0 - 999');
+    	}
+    	console.log(userNum);
+		}
+	
+    </script>
+</body>
+</html>
